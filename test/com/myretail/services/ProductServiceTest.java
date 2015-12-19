@@ -36,40 +36,29 @@ public class ProductServiceTest {
 	@Test
 	public void findAllProducts() {
 		checkDataSetup();
-
 		List<Product> products = productService.findAllProducts();
-
 		Assert.assertEquals(5, products.size());
 	}
 
 	@Test
 	public void findAllProductsInStock() {
 		checkDataSetup();
-
 		List<Product> products = productService.findAllProductsInStock();
-
 		Assert.assertEquals(4, products.size());
-
 	}
 
 	@Test
 	public void findAllProductsOutOfStock() {
 		checkDataSetup();
-
 		List<Product> products = productService.findAllProductsOutOfStock();
-
 		Assert.assertEquals(1, products.size());
-
 	}
 
 	@Test
 	public void searchProductById() {
 		checkDataSetup();
-
 		List<Product> products = productService.searchProductById("010001");
-
 		Assert.assertEquals(1, products.size());
-
 	}
 
 }

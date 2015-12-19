@@ -30,7 +30,7 @@ import com.myretail.services.ProductService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:application-context.xml" })
 @WebAppConfiguration
-public class ProductControllerTest {
+public class LookupControllerTest {
 
 	@InjectMocks
 	LookupController controller;
@@ -50,6 +50,22 @@ public class ProductControllerTest {
 	}
 
 	@Test
+	public void getAllProducts() throws Exception {
+		List<Product> expectedProduct = Arrays.asList(new Product());
+		when(mockProductService.findAllProducts()).thenReturn(expectedProduct);
+		mockMvc.perform(get("/findAll")).andExpect(status().isOk())
+				.andExpect(model().attribute("products", expectedProduct)).andExpect(view().name("index")).andReturn();
+	}
+
+	@Test
+	public void getAllProductsInStock() throws Exception {
+		List<Product> expectedProduct = Arrays.asList(new Product());
+		when(mockProductService.findAllProductsInStock()).thenReturn(expectedProduct);
+		mockMvc.perform(get("/findAllProductsInStock")).andExpect(status().isOk())
+				.andExpect(model().attribute("products", expectedProduct)).andExpect(view().name("index"));
+	}
+
+	@Test
 	public void getAllProductsOutOfStock() throws Exception {
 		List<Product> expectedProduct = Arrays.asList(new Product());
 		when(mockProductService.findAllProductsOutOfStock()).thenReturn(expectedProduct);
@@ -59,7 +75,7 @@ public class ProductControllerTest {
 
 	@Test
 	public void findProductById() throws Exception {
-		mockMvc.perform(post("/searchproduct").contentType(MediaType.TEXT_PLAIN).content(""))
+		mockMvc.perform(post("/searchproduct").contentType(MediaType.TEXT_PLAIN).param("productId", "12345"))
 				.andExpect(status().isOk());
 	}
 }
