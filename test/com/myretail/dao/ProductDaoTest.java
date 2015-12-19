@@ -2,8 +2,7 @@ package com.myretail.dao;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,23 +22,17 @@ public class ProductDaoTest {
 	private void checkDataSetup() {
 		if (!populated) {
 
-			productDao.add(new Product("010001", "Milk", "Land O Lakes",
-					"Full Cream Milk, 1 Gallon", 100));
-			productDao.add(new Product("020001", "Soda", "Coca Cola Company",
-					"Regular, 2 Liter Bottle", 0));
-			productDao.add(new Product("030001", "Juice", "Land O Lakes",
-					"Orange Juice, 1 Gallon ", 100));
-			productDao.add(new Product("040001", "Coffee", "Folgers",
-					"Dark Roast Arabica, 64oz ", 100));
-			productDao.add(new Product("050001", "Butter", "Crystal",
-					"Salted Butter 1 Lbs, 4 Stricks", 100));
+			productDao.add(new Product("010001", "Milk", "Land O Lakes", "Full Cream Milk, 1 Gallon", 100));
+			productDao.add(new Product("020001", "Soda", "Coca Cola Company", "Regular, 2 Liter Bottle", 0));
+			productDao.add(new Product("030001", "Juice", "Land O Lakes", "Orange Juice, 1 Gallon ", 100));
+			productDao.add(new Product("040001", "Coffee", "Folgers", "Dark Roast Arabica, 64oz ", 100));
+			productDao.add(new Product("050001", "Butter", "Crystal", "Salted Butter 1 Lbs, 4 Stricks", 100));
 
 			populated = true;
 		}
 
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void findAllProducts() {
 		checkDataSetup();
